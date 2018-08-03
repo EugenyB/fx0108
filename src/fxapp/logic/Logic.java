@@ -63,4 +63,16 @@ public class Logic {
             e.printStackTrace();
         }
     }
+
+    public void updateStudent(Student student) {
+        try (PreparedStatement ps = connection.prepareStatement("update Student set name=?, lastname=?, age=? where id=?")) {
+            ps.setInt(4, student.getId());
+            ps.setInt(3, student.getAge());
+            ps.setString(1, student.getName());
+            ps.setString(2, student.getLastName());
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }
